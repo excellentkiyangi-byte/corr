@@ -1,0 +1,479 @@
+form{
+	display: inline;
+	color: #004080;
+	font-family: "Times New Roman", Times, serif;
+}
+input[type=checkbox]{
+	margin: 4px 2px;
+}
+input[type=text]{
+	width: 100%;
+	border-radius: 2px;
+	margin: 4px 2px;
+	box-sizing: border-box;
+	background-color: #d0d0ff;
+	font-family: "Arial", "FreeSans", sans-serif;
+}
+input[type=text].rechercheAvancee{
+	width: 30%; 
+	border-radius: 2px;
+	margin: 4px 2px;
+	box-sizing: border-box;
+	background-color: #d0d0ff;
+	font-family: "Arial", "FreeSans", sans-serif;
+	display: inline;
+}
+.rechercheAvancee{
+	display: inline;
+}
+input[type=text].modifierBiblio{
+	width: 30%; 
+	border-radius: 2px;
+	margin: 4px 2px;
+	box-sizing: border-box;
+	background-color: #d0d0ff;
+	font-family: "Arial", "FreeSans", sans-serif;
+	display: inline;
+}
+.modifierBiblio{
+	display: inline;
+}
+input[type=password]{
+	width: 100%;
+	border-radius: 2px;
+	margin: 4px 2px;
+	box-sizing: border-box;
+	background-color: #d0d0ff;
+	font-family: "Arial", "FreeSans", sans-serif;
+}
+textarea {
+	width: 100%;
+	height: 150px;
+	border-radius: 2px;
+	margin: 4px 2px;
+	box-sizing: border-box;
+	background-color: #d0d0ff;
+	font-family: "Arial", "FreeSans", sans-serif;
+}
+input[type=submit]{
+	background-color: #0000dd;
+	border: none;
+	color: white;
+	padding: 8px 8px;
+	text-decoration: none;
+	margin: 12px 8px;
+	cursor: pointer;
+	border-radius: 8px;
+	font-family: "Helvetica";
+	font-size: 13px;
+}
+input[type=submit].smallButton{
+	float: right;
+	border: none;
+	color: white;
+	padding: 3px 8px;
+	margin: 1px;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 8px;
+	font-family: "Helvetica";
+	font-size: 13px;
+}
+input[type=submit].pager{
+	background-color: #0000dd;
+	border: none;
+	color: white;
+	padding: 8px 8px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 8px;
+}
+input[type=submit].redButton{
+	background-color: #aa3300;
+}
+input[type=submit]#currentPage{
+	background-color: #000033;
+}
+.submitButton{
+	display: inline-block;
+}
+.deleteButton{
+	float: right;
+	display: inline-block;
+}
+
+body{
+	background-color: #eeeeff;
+}
+.login{
+	background-color: #ffffff;
+}
+h1{
+	font-size: 24px;
+	color: #004080;
+	padding: 4px 4px 24px 4px;
+	margin: 4px 2px;
+}
+a:link{
+	color: #0000bb;
+}
+
+a:visited{
+	color: #000099;
+}
+
+a:hover{
+	color: #0000ff;
+}
+
+a:active{
+	color: #0000ff;
+}
+a.bouton{
+	background-color: #0000DD;
+	border: none;
+	color: white;
+	padding: 8px;
+	text-decoration: none;
+	margin: 8px;
+	cursor: pointer;
+	border-radius: 8px;
+	font-family: "Helvetica";
+	font-size: 13px;
+}
+
+.pagerPadding{
+	display: inline;
+	margin: 4px 2px;
+}
+
+.gauche{
+	width: 50%;
+	padding: 0px 0px;
+	display: inline-block;
+}
+.droite{
+	width: 49%;
+	padding: 0px 0px;
+	display: inline-block;
+	vertical-align: top;
+}
+.pageRA{
+	width: 100%;
+	padding: 0px 0px;
+	display: inline-block;
+}
+.donnee{
+	display: block;
+	width: 100%;
+}
+.donneeVoir{
+	display: block;
+	width: 100%;
+	padding: 4px;
+	font-size: 14px;
+}
+.titreChamp{
+	min-width: 180px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	padding: 0 0;
+	font-size: 14px;
+}
+.titreChamp2{
+	width: 30%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: left;
+	padding: 0 0;
+}
+.titreChampVoir{
+	width: 180px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	padding: 0 4px;
+	color: #004080;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+}
+.champ{
+	width: 100%;
+	display: table-cell;
+	padding: 0 0;
+	vertical-align: top;
+}
+.champVoir{
+	display: table-cell;
+	padding: 0 0;
+	vertical-align: middle;
+}
+.datesVoir{
+	font-size: 12px;
+	padding: 4px 4px 16px 4px;
+}
+.datesModif{
+	font-size: 12px;
+	padding: 4px 4px 16px 4px;
+}
+
+.menuIndex{
+	width: 99%;
+	border-style: double;
+	border-radius: 8px;
+	display: block;
+	background-color: #dcdcf0;
+	margin: 4px 0;
+	padding : 0;
+}
+.menuNouveau{
+	min-width: 150px;
+	display: table-cell;
+	vertical-align: middle;
+	border-right-style: solid;
+	padding: 4px 8px 4px 4px;
+	margin: 0;
+	vertical-align: middle;
+}
+.menuRecherche{
+	border-right-style: solid;
+	width: 100%;
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	padding: 4px 8px;
+	margin: 0;
+}
+input[type=text].menuRechInput{
+	width: 30%;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+input[type=submit].menuRechInput{
+	width: 15%;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	background-color: #0000dd;
+	border: none;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	font-family: "Helvetica";
+	font-size: 13px;
+}
+.menuNbPage{
+	min-width: 160px;
+	display: table-cell;
+	vertical-align: middle;
+	padding: 4px 4px;
+}
+
+.indexTab{
+	width: 99%;
+	font-family: "Arial", "FreeSans", sans-serif;
+	border-style: double;
+	border-width: 4px;
+	border-radius: 12px;
+	background-color: #dcdcff;
+}
+.tabTitles{
+	border-bottom-style: dotted;
+	border-width: 2px;
+}
+.tabMigrant{
+	border-bottom-style: dotted;
+	border-width: 1px;
+}
+.tabBibliographie{
+	border-bottom-style: dotted;
+	border-width: 1px;
+}
+.migrantEdit{
+	min-width: 65px;
+	display: table-cell;
+	text-align: center;
+}
+.migrantID{
+	min-width: 50px;
+	display: table-cell;
+	text-align: center;
+	border-style: none solid;
+	border-width: 1px;
+	padding: 0 0 0 4px;
+}
+.migrantNumero{
+	min-width: 170px;
+	display: table-cell;
+	border-right-style: solid;
+	border-width: 1px;
+	padding: 0 0 0 4px;
+}
+.migrantNom{
+	width: 100%;
+	display: table-cell;
+	padding: 0 0 0 4px;
+}
+.migrantDarker{
+	background-color: #cbcbf0;
+}
+
+.bibliographieEdit{
+	min-width: 65px;
+	display: table-cell;
+	text-align: center;
+}
+
+.bibliographieID{
+	min-width: 50px;
+	display: table-cell;
+	text-align: center;
+	border-style: none solid;
+	border-width: 1px;
+	padding: 0 0 0 4px;
+}
+.bibliographieNumero{
+	min-width: 170px;
+	display: table-cell;
+	border-right-style: solid;
+	border-width: 1px;
+	padding: 0 0 0 4px;
+}
+.bibliographieNom{
+	width: 100%;
+	display: table-cell;
+	padding: 0 0 0 4px;
+}
+
+.bibliographieDarker{
+	background-color: #bbbbe0;
+}
+
+.rempLabel{
+	display: table-cell;
+	padding: 0 8px;
+}
+.rempChamp{
+	display: table-cell;
+	padding: 0 8px 0 0;
+}
+.rempSelect{
+	margin: 2px;
+	padding: 4px;
+}
+.rempMessageGood{
+	font-size: 16px;
+	color: #00a040;
+	padding: 4px 4px 4px 4px;
+	margin: 4px 2px;
+}
+.rempMessageBad{
+	font-size: 16px;
+	color: #a00040;
+	padding: 4px 4px 4px 4px;
+	margin: 4px 2px;
+}
+
+.acroTab{
+	width: 99%;
+	font-family: "Arial", "FreeSans", sans-serif;
+	border-style: double;
+	border-width: 4px;
+	border-radius: 12px;
+	background-color: #dcdcff;
+}
+.tabTitlesAcro{
+	border-bottom-style: dotted;
+	border-width: 2px;
+}
+.tabAcro{
+	border-bottom-style: dotted;
+	border-width: 1px;
+}
+.acroEdit{
+	min-width: 65px;
+	display: table-cell;
+	text-align: center;
+}
+.acroID{
+	min-width: 50px;
+	display: table-cell;
+	text-align: center;
+	border-style: none solid;
+	border-width: 1px;
+	padding: 0 0 0 4px;
+}
+.acroAcro{
+	min-width: 150px;
+	display: table-cell;
+	border-right-style: solid;
+	border-width: 1px;
+	padding: 0 0 0 4px;
+}
+.acroDefinition{
+	width: 100%;
+	display: table-cell;
+	padding: 0 0 0 4px;
+}
+.acroDarker{
+	background-color: #cbcbf0;
+}
+
+.menuRechercheA{
+	border-right-style: solid;
+	width: 100%;
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	padding: 4px 8px;
+	margin: 0;
+}
+input[type=text].menuRechInputA{
+	width: 65%;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+input[type=submit].menuRechInputA{
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	background-color: #0000dd;
+	border: none;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	font-family: "Helvetica";
+	font-size: 13px;
+}
+
+
+.donneeAcro{
+	display: block;
+	max-width: 450px;
+}
+.titreChampAcro{
+	min-width: 80px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	padding: 0 0;
+	font-size: 14px;
+}
+.champAcro{
+	width: 100%;
+	display: table-cell;
+	padding: 0 0;
+	vertical-align: top;
+}
