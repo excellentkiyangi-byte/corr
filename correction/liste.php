@@ -50,21 +50,25 @@
 		$_SESSION['recherche'] = $recherche;
 		$_SESSION['rechercheChamp'] = $rechercheChamp;
 	}
+
 	// Si on a cliqué sur le bouton "Recherche", on déréférence la recherche avancée et le fait qu'on veuille les fiches non publiées.
 	if (isset($_GET['bouton_recherche'])){
 		unset($_SESSION['andOr']);
 		unset($_SESSION['publie']);
 	}
+
 	// Si on avait cliqué sur "Recherche", puis changé de page, on prend les valeurs des variables de session assignées plus haut.
 	else if (isset($_SESSION['recherche'])){
 		$recherche = $_SESSION['recherche'];
 		$rechercheChamp = $_SESSION['rechercheChamp'];
 	}
+
 	// Si on a jamais cliqué sur "Recherche", on prend la valeur par défaut qui affiche tous les résultats.
 	else{
 		$recherche = "";
 		$rechercheChamp = "all";
 	}
+
 	$rechercheChamp = preg_replace('#[^a-z]#', '', $rechercheChamp);
 
 	unset($_SESSION['rechercheB']);
@@ -281,7 +285,7 @@
 		// 	- Un lien vers le remplacement de texte (si on a accès à la modification)
 		// 	- Un lien pour afficher les fiches non publiées (si on a accès à la modification)
 		?>
-		<p> <a href="index.php?a=logout">Fin de session</a> <?php if (CheckSecurity("Edit")) { ?> | <a href="remplacerChaine.php">Remplacement de texte</a> | <a href="liste.php?publie=1">Fiches non publiées</a> <?php } ?> | <a href="listeAcro.php">Gestion des acronymes</a> | <a href="listeBibliographie.php">Gestion des bibliographies</a><?php if (CheckSecurity("Export")) { ?> | <a href="excel.php?recherche=<?php echo $recherche;?>&rechercheChamp=<?php echo $rechercheChamp;?>">Exporter les données</a><?php } ?></p>
+		<p> <a href="index.php?a=logout">Fin de session</a> <?php if (CheckSecurity("Edit")) { ?> | <a href="remplacerChaine.php">Remplacement de texte</a> | <a href="liste.php?publie=1">Fiches non publiées</a> <?php } ?> | <a href="listeAcro.php">Gestion des acronymes</a> | <a href="listeBibliographie.php">Gestion des bibliographies</a><?php if (CheckSecurity("Export")) { ?> | <a href="excel.php?recherche=<?php echo $recherche;?>&rechercheChamp=<?php echo $rechercheChamp;?>">Exporter les données</a><?php } ?> | <a href="listeFichesArchivees.php">Liste des fiches archivées</a></p>
 		<?php
 		// Début du menu
 		?>

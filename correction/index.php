@@ -24,7 +24,6 @@
 			$_SESSION['connection'] = false;
 		}
 	}
-
 	
 	// On confirme la connexion
 	if ($_SESSION['connection'] == true)
