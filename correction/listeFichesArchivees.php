@@ -83,7 +83,7 @@
     <meta name="author" content="Marc-Albert Fournier">
 </head>
 <body>
-<a href="liste.php?reset=1"><img src="Images/logo.png" alt="Fichier origine" style="width:350px;height:100px;"></a>
+<a href="listeFichesArchivees.php?reset=1"><img src="Images/logo.png" alt="Fichier origine" style="width:350px;height:100px;"></a>
 <h1>Édition de la base de données</h1>
 
 <?php
@@ -98,8 +98,8 @@ $link = connexionBD();
 
 // Si on a cliqué sur "Fiches à valider"
 if (isset($_GET['publie'])){
-    $query = "select migrant, numero, id from origine where publication !=''";
-    $qcount = "select count(*) from origine where publication !=''";
+    $query = "select migrant, numero, id from fiches_archivees where publication !=''";
+    $qcount = "select count(*) from fiches_archivees where publication !=''";
     $_SESSION['publie'] = $_GET['publie'];
     unset($_SESSION['andOr']);
     unset($_SESSION['recherche']);
@@ -114,8 +114,8 @@ else if (isset($_POST['andOr'])){
     unset($_SESSION['publie']);
     unset($_SESSION['recherche']);
     unset($_SESSION['rechercheChamp']);
-    $query = "select migrant, numero, id from origine";
-    $qcount = "select count(*) from origine";
+    $query = "select migrant, numero, id from fiches_archivees";
+    $qcount = "select count(*) from fiches_archivees";
 
     $where = "";
     $compteur = 0;
@@ -164,16 +164,16 @@ else if (isset($_POST['andOr'])){
 // Sinon, si on a changé de page pendant qu'on navigue les "Fiches à valider"
 else if(isset($_SESSION['publie'])){
     $publie = $_SESSION['publie'];
-    $query = "select migrant, numero, id from origine where publication !=''";
-    $qcount = "select count(*) from origine where publication !=''";
+    $query = "select migrant, numero, id from fiches_archivees where publication !=''";
+    $qcount = "select count(*) from fiches_archivees where publication !=''";
     $query .= $where." LIMIT $limit OFFSET $offset";
 }
 // Sinon, si on a changé de page pendant une "Recherche avancée"
 else if (isset($_SESSION['andOr'])){
     $andOr = $_SESSION['andOr'];
     if ($andOr != "and" && $andOr != "or") $andOr = "and";
-    $query = "select migrant, numero, id from origine";
-    $qcount = "select count(*) from origine";
+    $query = "select migrant, numero, id from fiches_archivees";
+    $qcount = "select count(*) from fiches_archivees";
 
     $where = "";
     $compteur = 0;
@@ -221,8 +221,8 @@ else if (isset($_SESSION['andOr'])){
 }
 // Sinon, si on est en mode "Recherche" utilisant tous les champs.
 else if ($rechercheChamp == "all") {
-    $query = "select migrant, numero, id from origine where ";
-    $qcount = "select count(*) from origine where ";
+    $query = "select migrant, numero, id from fiches_archivees where ";
+    $qcount = "select count(*) from fiches_archivees where ";
 
     $where = "";
     $compteur = 0;
@@ -267,15 +267,14 @@ else if ($rechercheChamp == "all") {
 // Si on a aucun des cas ci-dessus, on assume une recherche avec un seul champ
 // (Si on avait pas lancé de recherche, les valeurs par défaut assurent qu'on affichera tous les éléments)
 else{
-    $query = "select migrant, numero, id from origine where ".mysqli_real_escape_string($link,$rechercheChamp)." like '%".mysqli_real_escape_string($link, $recherche)."%' LIMIT $limit OFFSET $offset";
-    $qcount = "select count(*) from origine where ".mysqli_real_escape_string($link,$rechercheChamp)." like '%".mysqli_real_escape_string($link, $recherche)."%'";
+    $query = "select migrant, numero, id from fiches_archivees where ".mysqli_real_escape_string($link,$rechercheChamp)." like '%".mysqli_real_escape_string($link, $recherche)."%' LIMIT $limit OFFSET $offset";
+    $qcount = "select count(*) from fiches_archivees where ".mysqli_real_escape_string($link,$rechercheChamp)." like '%".mysqli_real_escape_string($link, $recherche)."%'";
 }
 
 // Les requêtes ont été créées par le bloc de conditions précédent. On peut maintenant les exécuter.
 $c = mysqli_query($link,$qcount);
 $r = mysqli_query($link,$query);
 deconnexionBD($link);
-
 
 // Barre de texte au dessus du menu. Contient:
 //	- Un lien pour terminer la session et se déconnecter.
@@ -295,7 +294,7 @@ deconnexionBD($link);
     // Menu de recherche. Utilise la variable $rechercheChamp pour déterminer quelle option est sétectionnée.
     ?><div class="menuRecherche">
         Recherche :
-        <form action="liste.php" method="get">
+        <form action="listeFichesArchivees.php" method="get">
             <select name="rechercheChamp" class="menuRechInput" onchange="document.getElementById('recherche').value=''">
                 <option value="all" <?php if ($rechercheChamp == "all") echo "selected";?>>
                     N'importe quel champ</option>
@@ -370,7 +369,7 @@ deconnexionBD($link);
         <a href="rechercheAvancee.php">Recherche avancée</a>
     </div>
     <div class="menuNbPage">
-        Nb. par page:<select name="nbPerPage" onchange="location = 'liste.php?recherche=<?php echo $recherche;?>&rechercheChamp=<?php echo $rechercheChamp;?>&nbPerPage='+this.value">
+        Nb. par page:<select name="nbPerPage" onchange="location = 'listeFichesArchivees.php?recherche=<?php echo $recherche;?>&rechercheChamp=<?php echo $rechercheChamp;?>&nbPerPage='+this.value">
             <option value="10" <?php if ($nbPerPage == 10) echo "selected";?>>10</option>
             <option value="20" <?php if ($nbPerPage == 20) echo "selected";?>>20</option>
             <option value="30" <?php if ($nbPerPage == 30) echo "selected";?>>30</option>
@@ -400,7 +399,7 @@ deconnexionBD($link);
             <?php
             // Si on a accès à la modification, on affiche la colonne "Éditer". Sinon, on offre un lien sur le nom du migrant pour voir la fiche.
             // On a pas laissé le lien sur le nom du migrant quand la fiche peut être modifiée pour raisons d'esthétisme
-            if (CheckSecurity("Edit")) { ?><div class="migrantEdit"><a href="modifierFiche.php?id=<?php echo $id; ?>">Éditer</a></div><?php } ?>
+            if (CheckSecurity("Edit")) { ?><div class="migrantEdit"><a href="modifierFicheArchivee.php?id=<?php echo $id; ?>">Éditer</a></div><?php } ?>
             <div class="migrantID"><?php echo $id; ?></div>
             <div class="migrantNumero"><?php echo $numero; ?></div>
             <div class="migrantNom"><?php if (!CheckSecurity("Edit"))echo "<a href='voirFiche.php?id=".$id."'>$migrant</a>"; else echo $migrant; ?></div>
@@ -433,7 +432,7 @@ $lastCount = ($i+10 < $lastPage) ? $i+10: $lastPage;
 // Création du pager. Si on est loin de la première page, elle s'affiche en premier, à part.
 if ($i > 1){
     ?>
-    <form action="liste.php" method="get">
+    <form action="listeFichesArchivees.php.php" method="get">
         <input type="hidden" name="page" value="1">
         <input type="hidden" name="recherche" value="<?php echo htmlspecialchars($recherche); ?>">
         <input type="hidden" name="rechercheChamp" value="<?php echo $rechercheChamp; ?>">
@@ -446,7 +445,7 @@ if ($i > 1){
 // Affiche une dizaine de pages autour de la page actuelle.
 for($j=$i;$j<=$lastCount;$j++){
     ?>
-    <form action="liste.php" method="get">
+    <form action="listeFichesArchivees.php" method="get">
         <input type="hidden" name="page" value="<?php echo $j; ?>">
         <input type="hidden" name="recherche" value="<?php echo htmlspecialchars($recherche); ?>">
         <input type="hidden" name="rechercheChamp" value="<?php echo $rechercheChamp; ?>">
@@ -459,7 +458,7 @@ for($j=$i;$j<=$lastCount;$j++){
 if ($lastCount < $lastPage){
     ?>
     <div class="pagerPadding">...</div>
-    <form action="liste.php" method="get">
+    <form action="listeFichesArchivees.php" method="get">
         <input type="hidden" name="page" value="<?php echo $lastPage; ?>">
         <input type="hidden" name="recherche" value="<?php echo htmlspecialchars($recherche); ?>">
         <input type="hidden" name="rechercheChamp" value="<?php echo $rechercheChamp; ?>">

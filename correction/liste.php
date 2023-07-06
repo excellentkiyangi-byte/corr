@@ -169,7 +169,9 @@
 			$publie = $_SESSION['publie'];
 			$query = "select migrant, numero, id from origine where publication !=''";
 			$qcount = "select count(*) from origine where publication !=''";
-			$query .= $where." LIMIT $limit OFFSET $offset";
+			if(isset($where)){
+				$query .= $where." LIMIT $limit OFFSET $offset";
+			}
 		}
 		// Sinon, si on a changé de page pendant une "Recherche avancée"
 		else if (isset($_SESSION['andOr'])){

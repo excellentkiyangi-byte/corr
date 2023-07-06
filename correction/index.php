@@ -26,17 +26,20 @@
 	}
 	
 	// On confirme la connexion
-	if ($_SESSION['connection'] == true)
-	{
-		$_SESSION['connection'] = true;
-	}
-	else
-	{
-		if(isset($_SESSION['message'])){
-			$connection = $_SESSION['message'];
+	if (isset($_SESSION['connection'])){
+		if ($_SESSION['connection'] == true)
+		{
+			$_SESSION['connection'] = true;
 		}
-		$_SESSION['connection'] = false;
+		else
+		{
+			if(isset($_SESSION['message'])){
+				$connection = $_SESSION['message'];
+			}
+			$_SESSION['connection'] = false;
+		}
 	}
+
 	
 // Début du HTML
 ?>

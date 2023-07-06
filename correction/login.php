@@ -23,10 +23,7 @@
 	// Si on a envoyé le formulaire de connexion
 	if($_POST['connection']) {
 		// On interroge la BD pour obtenir le nom de passe.
-		#$username ="fichierori"; # $_POST["username"];
-		#$password = "$2y$10\$qnX15WeqmfxqtoDyq0dAS.F2Q.cK2w14x4yTNUAwulrZ7B00h3DY6";#$_POST["password"];
-		#$credentials['username'] = $_POST["username"];
-		#$credentials['password'] = $_POST["password"];
+
 		$username = $_POST["username"];
 		$password = $_POST["password"];
 

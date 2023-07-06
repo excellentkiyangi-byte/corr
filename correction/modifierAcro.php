@@ -34,9 +34,8 @@
 		$id = mysqli_real_escape_string($link, $_POST['id']);
 		$acronyme = mysqli_real_escape_string($link, $_POST['acronyme']);
 		$definition = mysqli_real_escape_string($link, $_POST['definition']);
-		
-		
-		
+
+
 		// Création de la requête SQL.
 		if ($update)
 			$q = "UPDATE acronyme set acronyme='$acronyme', definition='$definition' where id=$id";
@@ -124,10 +123,10 @@
 			
 			$update = true;
 		}
-		else{
+		else
+		{
 			header("Location: listeAcro.php");
 		}
-		
 	}
 	else{
 		$acronyme = "";

@@ -23,9 +23,6 @@
 		return;
 	}
 	
-	
-	
-	
 	//endroit où mettre la fonction du bouton valider ID
 	if (isset($_POST['bouton_valider'])){
 		
@@ -323,7 +320,7 @@
 				$good = false;
 			}
 		}
-		
+
 		deconnexionBD($link);
 	} // Fin traitement bouton_submit
 
@@ -331,35 +328,123 @@
 	// (On obtient dans tous les cas un message à afficher)
 	else if (isset($_POST['bouton_delete'])){
 		// Si on a la permission, on effectue la suppression.
-		if (CheckSecurity("Delete")){
+		if (CheckSecurity("Delete")) {
 			$link = connexionBD();
 			$id = mysqli_real_escape_string($link, $_POST['id']);
 			$qdel = "SELECT archive, actenumerises from origine where id='$id'";
 			$row = mysqli_fetch_row(mysqli_query($link, $qdel));
-			$fileD = imageFolder().$row[0];
-			$fileA = imageFolder().$row[1];
-			
+			$fileD = imageFolder() . $row[0];
+			$fileA = imageFolder() . $row[1];
+
 			$q = "DELETE FROM origine WHERE id='$id'";
-			if (mysqli_query($link, $q)){
+			if (mysqli_query($link, $q)) {
 				$message = "Suppression de la fiche réussie.";
 				$good = true;
-				if (file_exists($fileD)){
+				if (file_exists($fileD)) {
 					if (unlink($fileD))
 						$message .= " (fichier dossier inclu)";
 				}
-				if (file_exists($fileA)){
+				if (file_exists($fileA)) {
 					if (unlink($fileA))
 						$message .= " (fichier acte inclu)";
 				}
-			}
-			else{
-				$message = "Échec de la suppression: ".mysqli_error($link);
+			} else {
+				$message = "Échec de la suppression: " . mysqli_error($link);
 				$good = false;
 			}
 			deconnexionBD($link);
 		}
 		else {
 			$message = "Impossible d'exécuter la requête de suppression - Permission non accordée.";
+			$good = false;
+		}
+	} // Fin traitement bouton_delete
+
+	// Si on a soumis un archivage  d'une fiche
+	// (On obtient dans tous les cas un message à afficher)
+	else if (isset($_POST['bouton_archive'])){
+		// Si on a la permission, on effectue la suppression.
+		if (CheckSecurity("Delete")) {
+			$link = connexionBD();
+			$id = mysqli_real_escape_string($link, $_POST['id']);
+			$qdel = "SELECT archive, actenumerises from origine where id='$id'";
+			$row = mysqli_fetch_row(mysqli_query($link, $qdel));
+			$fileD = imageFolder() . $row[0];
+			$fileA = imageFolder() . $row[1];
+
+			$row_to_delete = "SELECT * from origine where id='$id'";
+			$result = mysqli_query($link, $row_to_delete);
+
+			while ($result1 = mysqli_fetch_assoc($result)) {
+				$migrant = $result1['migrant'];
+				$sexe = $result1['sexe'];
+				$lieudeces = $result1['lieudeces'];
+				$datedeces = $result1['datedeces'];
+				$naissance = $result1['naissance'];
+				$bapteme = $result1['bapteme'];
+				$commune = $result1['commune'];
+				$annotation = $result1['annotation'];
+				$pays = $result1['pays'];
+				$code1 = $result1['code1'];
+				$pere = $result1['pere'];
+				$mere = $result1['mere'];
+				$datemariage = $result1['datemariage'];
+				$lieumariage = $result1['lieumariage'];
+				$code2 = $result1['code2'];
+				$datecontrat = $result1['datecontrat'];
+				$notaire = $result1['notaire'];
+				$lieucontrat = $result1['lieucontrat'];
+				$metier = $result1['metier'];
+				$mention = $result1['mention'];
+				$occupation = $result1['occupation'];
+				$status = $result1['status'];
+				$mdatemariage = $result1['mdatemariage'];
+				$mlieumariage = $result1['mlieumariage'];
+				$conjoint = $result1['conjoint'];
+				$identification = $result1['identification'];
+				$chercheur = $result1['chercheur'];
+				$reference = $result1['reference'];
+				$copie = $result1['copie'];
+				$numero = $result1['numero'];
+				$dossiers = $result1['dossiers'];;
+				$nom = $result1['nom'];
+				$surnom = $result1['surnom'];
+				$surnom1 = $result1['surnom1'];
+				$localite = $result1['localite'];;
+				$paroisse = $result1['paroisse'];
+				$NOTES = $result1['NOTES'];
+				$datemodif = $result1['datemodif'];
+				$archive = $result1['datemodif'];
+				$actenumerises = $result1['actenumerises'];
+				$publication = $result1['publication'];
+				$mariagerech = $result1['mariagerech'];
+
+
+				$message = $nom;
+				$q = "DELETE FROM origine WHERE id='$id'";
+
+				if (mysqli_query($link, $q)) {
+					$ajout_dans_fiches_archiveees = "INSERT INTO fiches_archivees(migrant, sexe, lieudeces, datedeces, naissance, bapteme, commune, pays, code1, pere, mere, datemariage, lieumariage, code2, datecontrat, notaire, metier, mention, occupation, status, mdatemariage, mlieumariage, conjoint, annotation, identification, chercheur, reference, copie, numero, dossiers, nom, surnom, surnom1, localite, paroisse, NOTES, datemodif, dateajout, archive, publication, mariagerech, lieucontrat, actenumerises) VALUES ('$migrant', '$sexe', '$lieudeces','$datedeces','$naissance','$bapteme','$commune','$pays','$code1','$pere','$mere','$datemariage','$lieumariage','$code2','$datecontrat','$notaire','$metier','$mention','$occupation','$status','$mdatemariage','$mlieumariage','$conjoint','$annotation','$identification','$chercheur','$reference','$copie','$numero','$dossiers','$nom','$surnom','$surnom1','$localite','$paroisse','$NOTES','$datemodif','$datemodif','$archive','$publication', '$mariagerech', '$lieucontrat', '$actenumerises')";
+					mysqli_query($link, $ajout_dans_fiches_archiveees);
+					$message = "archivage de la fiche réussie.";
+					$good = true;
+					if (file_exists($fileD)) {
+						if (unlink($fileD))
+							$message .= " (fichier dossier inclu)";
+					}
+					if (file_exists($fileA)) {
+						if (unlink($fileA))
+							$message .= " (fichier acte inclu)";
+					}
+				} else {
+					$message = "Échec de l'archivage: " . mysqli_error($link);
+					$good = false;
+				}
+				deconnexionBD($link);
+			}
+		}
+		else {
+			$message = "Impossible d'exécuter la requête d' archivage - Permission non accordée.";
 			$good = false;
 		}
 	} // Fin traitement bouton_delete
@@ -521,8 +606,8 @@
 		else{
 			header("Location: liste.php");
 		}
-		
 	}
+
 	// Si on a pas d'ID dans l'url, ou qu'on vient de supprimer la fiche
 	else{
 		// On initialise nos variables vides.
@@ -966,7 +1051,11 @@
 			if ($update && CheckSecurity("Delete")) {?>
 			<div class="deleteButton">
 				<input type="submit" name="bouton_delete" value="Supprimer cet enregistrement" class="redButton"><br>
+			</div>
+			<div class="deleteButton">
+				<input type="submit" name="bouton_archive" value="archiver cet enregistrement" class="yellowButton"><br>
 			</div><?php } ?>
+
 		</form><br/><br/>
 		<a href="liste.php" class="bouton">Retour</a>
 	</body>
